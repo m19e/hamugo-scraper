@@ -33,7 +33,7 @@ const HAMUGO_PAGE_RANGE = Array.from({ length: 9 }, (_, i) => i + 1);
 // body > center:nth-child(42)
 // body > center:nth-child(44)
 
-// hamugo02 ~ 09
+// hamugo02~04,08,09
 // first hamugo item
 // body > center:nth-child(5)
 // body > center:nth-child(7)
