@@ -1,4 +1,4 @@
-import { ky, DOMParser } from "./api/deps.ts";
+import { ky, DOMParser } from "./deps.ts";
 
 type Hamugo = {
     word: string;
