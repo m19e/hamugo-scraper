@@ -79,7 +79,7 @@ const getHamugoItems = async (page: number): Promise<Hamugo[]> => {
         const childItemIndex = firstItemIndex + index * 7;
         const mainBodyExist = dom.querySelector(`body > center:nth-child(${childItemIndex}) > table > tbody`);
         const mainBody = mainBodyExist ?? dom.querySelector(`body > center:nth-child(${childItemIndex - 1}) > table > tbody`)!;
-        const childExampleIndex = mainBodyExist ? childItemIndex + 2 : childItemIndex + 3;
+        const childExampleIndex = mainBodyExist ? childItemIndex + 2 : childItemIndex + 1;
 
         const wordImg = mainBody.querySelector(`tr:nth-child(1) > td:nth-child(2) > img`)!;
         const word = wordImg.getAttribute("alt")!;
