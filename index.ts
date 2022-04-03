@@ -5,6 +5,7 @@ type Hamugo = {
     meaning: string;
     hint: string;
     example: string;
+    url: string;
 };
 
 const HAMUGO_PREFIX = "https://www.nintendo.co.jp/n02/dmg/b86j/";
@@ -68,6 +69,8 @@ const getHamugoItems = async (page: number): Promise<Hamugo[]> => {
         throw new Error("DOM parse failed");
     }
 
+    const url = HAMUGO_PREFIX + `hamugo0${page}/index.html`;
+
     const firstPage = page === 1;
     const firstItemIndex = firstPage ? 7 : 5;
     const itemCount = firstPage ? 6 : 10;
@@ -76,7 +79,7 @@ const getHamugoItems = async (page: number): Promise<Hamugo[]> => {
         const childItemIndex = firstItemIndex + index * 7;
         const mainBodyExist = dom.querySelector(`body > center:nth-child(${childItemIndex}) > table > tbody`);
         const mainBody = mainBodyExist ?? dom.querySelector(`body > center:nth-child(${childItemIndex - 1}) > table > tbody`)!;
-        const childExampleIndex = mainBodyExist ? childItemIndex + 2 : childItemIndex + 3;
+        const childExampleIndex = mainBodyExist ? childItemIndex + 2 : childItemIndex + 1;
 
         const wordImg = mainBody.querySelector(`tr:nth-child(1) > td:nth-child(2) > img`)!;
         const word = wordImg.getAttribute("alt")!;
@@ -94,7 +97,7 @@ const getHamugoItems = async (page: number): Promise<Hamugo[]> => {
         exampleTd.removeChild(exampleTdFont);
         const example = exampleTd.innerText;
 
-        return { word, meaning, hint, example };
+        return { word, meaning, hint, example, url };
     });
 };
 
